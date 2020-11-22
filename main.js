@@ -18,13 +18,10 @@ async function run() {
             repo: repo,
             });
         releases = releases.data;
-        if (excludes.includes('prerelease')) {
-            releases = releases.filter(x => x.prerelease != true);
-        }
-        if (excludes.includes('draft')) {
-            releases = releases.filter(x => x.draft != true);
-        }
-        if (releases.length) {
+         
+        let prerelease = releases.filter(x => x.prerelease === true);
+        
+        if (prerelease.length) {
             core.setOutput('release', releases[0].tag_name)
         } else {
             core.setFailed("No valid releases");
