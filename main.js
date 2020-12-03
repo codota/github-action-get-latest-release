@@ -22,7 +22,7 @@ async function run() {
         let prerelease = releases.filter(x => x.prerelease === true);
         
         if (prerelease.length) {
-            core.setOutput('release', releases[0].tag_name)
+            core.setOutput('release', prerelease[0].tag_name)
         } else {
             core.setFailed("No valid releases");
         }
